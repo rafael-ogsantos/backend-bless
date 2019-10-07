@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_active', 'created_by', 'api_token', 'api_token_expireIn'
+        'name', 'email', 'password', 'phone_number', 'is_active', 'created_by', 'api_token', 'api_token_expireIn'
     ];
 
     /**
@@ -97,6 +97,11 @@ class User extends Authenticatable
         $this->api_token_expireIn = Carbon::now()->addHour(2)->toDateTimeString();
         $this->save();
         return $this->token_expireIn;
+    }
+
+    public function getProfileImage()
+    {
+        return asset('project-assets/uploaded/images/'.$this->user_details->profile_image);
     }
 
 }

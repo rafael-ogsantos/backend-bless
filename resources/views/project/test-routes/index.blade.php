@@ -99,3 +99,13 @@
 		</div>
 	</div>
 </form>
+<hr>
+<h3>Get All Users</h3>
+<form method="post" action="{{ url('api/alluser/') }}" class="custom_div_1" enctype="multipart/form-data">
+	@csrf
+	<div class="row from-group">
+		<div class="col-xs-12">
+			<button type="submit" class="btn btn-danger">Get All User</button>
+		</div>
+	</div>
+</form>

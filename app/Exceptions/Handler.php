@@ -46,6 +46,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof QueryException) {
+            return response(['error' => 'INVALID_DATA']);
+        }
         return parent::render($request, $exception);
     }
 }

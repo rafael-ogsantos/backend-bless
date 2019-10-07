@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -59,10 +60,10 @@ class LoginController extends Controller
             $user = $this->guard()->user();
             $user->setToken();
             $user->setTokenExpireDate();
-            $new_user = User::where('id',$user->id)->with('user_details')->first();
+            $new_user = User::where('id',$user->id)->with('user_details')->with('roles')->first();
             // dd($new_user);
             return response()->json([
-                'data' => $new_user->toArray()
+                'data' => new UserResource($new_user)
             ]);
         }
 

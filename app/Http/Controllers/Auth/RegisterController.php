@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -71,11 +72,15 @@ class RegisterController extends Controller
     {
         $user = User::create([
             'name' => $data['name'],
+            'phone_number' => $data['phone_number'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
 
-        if ($data->user_role === 'franchise') {
+        if ($data->user_role === 'admin') {
+            $user->roles()->attach(Role::where('name', 'Admin')->first());
+        }
+        elseif($data->user_role === 'franchise') {
             $user->roles()->attach(Role::where('name', 'Franchise')->first());
         }
         elseif($data->user_role === 'client') {
@@ -95,16 +100,17 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'phone_number' => $request->phone_number,
             'password' => Hash::make($request->password),
         ]);
 
-        if ($request->user_role === 'franchise') {
+        if ($data->user_role === 'admin') {
+            $user->roles()->attach(Role::where('name', 'Admin')->first());
+        }
+        elseif($data->user_role === 'franchise') {
             $user->roles()->attach(Role::where('name', 'Franchise')->first());
         }
-        elseif($request->user_role === 'client') {
-            $user->roles()->attach(Role::where('name', 'Client')->first());
-        }
-        else {
+        elseif($data->user_role === 'client') {
             $user->roles()->attach(Role::where('name', 'Client')->first());
         }
         UserDetails::create([
@@ -113,10 +119,10 @@ class RegisterController extends Controller
         ]);
         $user->setToken();
         $user->setTokenExpireDate();
-        $new_user = User::where('id', $user->id)->with('user_details')->first();
+        $new_user = User::where('id', $user->id)->with('user_details')->with('roles')->first();
         // return redirect('/')->with('signup_success','You have Successfully Signed Up!');
         return response()->json([
-            'data' => $new_user->toArray()
+            'data' => new UserResource($new_user)
         ]);
     }
 }

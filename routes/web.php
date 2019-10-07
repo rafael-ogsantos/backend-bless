@@ -19,11 +19,13 @@ Route::get('test_routes', 'TestController@TestRoutes');
 Route::post('test_login','Auth\LoginController@loginApi');
 Route::post('test_register','Auth\RegisterController@registerApi');
 Route::post('test_logout','Auth\LoginController@logoutApi');
-
+Route::get('getuserdata', 'Api\ApiUserController@localGetUserData');
 
 // Project Admin Roues
 	Route::redirect('/','/test_routes');
 	Route::redirect('/home','/test_routes');
+
+
 
 Route::group([
 	// assign roles to user Route

@@ -59,6 +59,7 @@ class ApiUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone_number' => $request->phone_number,
+            'region' => $request->region,
             'password' => Hash::make($request->password),
         ]);
 
@@ -91,6 +92,7 @@ class ApiUserController extends Controller
         User::where('id', $request->userId)->update([
             'name' => $request->name != null ? $request->name : $user->name,
             // 'email' => $request->email != null ? $request->email : $user->email,
+            'region' => $request->region != null ? $request->region : $user->region,
             'phone_number' => $request->phone_number != null ? $request->phone_number : $user->phone_number,
         ]);        
 

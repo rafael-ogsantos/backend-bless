@@ -26,3 +26,6 @@ Route::post('userData','Api\ApiUserController@getUserData');
 Route::post('edituser','Api\ApiUserController@editUserData');
 Route::post('edituserimage','Api\ApiUserController@changeUserImage');
 Route::post('adduser','Api\ApiUserController@addUser');
+Route::post('getownregionagents','Api\ApiAgentController@getOwnRegionAgents');
+Route::post('searchagent','Api\ApiAgentController@searchAgent');
+Route::post('allagent','Api\ApiAgentController@allAgent');

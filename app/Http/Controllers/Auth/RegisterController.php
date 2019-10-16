@@ -100,17 +100,18 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'region' => $request->region,
             'phone_number' => $request->phone_number,
             'password' => Hash::make($request->password),
         ]);
 
-        if ($data->user_role === 'admin') {
+        if ($request->user_role === 'admin') {
             $user->roles()->attach(Role::where('name', 'Admin')->first());
         }
-        elseif($data->user_role === 'franchise') {
+        elseif($request->user_role === 'franchise') {
             $user->roles()->attach(Role::where('name', 'Franchise')->first());
         }
-        elseif($data->user_role === 'client') {
+        elseif($request->user_role === 'client') {
             $user->roles()->attach(Role::where('name', 'Client')->first());
         }
         UserDetails::create([

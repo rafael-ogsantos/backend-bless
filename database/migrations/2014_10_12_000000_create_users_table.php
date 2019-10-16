@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('is_active')->default(1)->nullable();
+            $table->string('region')->nullable();
             $table->integer('created_by')->nullable();
             $table->text('api_token')->nullable();
             $table->string('api_token_expireIn')->nullable();

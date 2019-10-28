@@ -58,7 +58,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'user_role' => ['required', 'string'],
+            'user_role' => ['required', 'string']
         ]);
     }
 
@@ -74,7 +74,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'phone_number' => $data['phone_number'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => Hash::make($data['password'])
         ]);
 
         if ($data->user_role === 'admin') {
@@ -102,7 +102,7 @@ class RegisterController extends Controller
             'email' => $request->email,
             'region' => $request->region,
             'phone_number' => $request->phone_number,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->password)
         ]);
 
         if ($request->user_role === 'admin') {
@@ -116,7 +116,8 @@ class RegisterController extends Controller
         }
         UserDetails::create([
             'user_id' => $user->id,
-            'profile_image' => 'user.png'
+            'profile_image' => 'user.png',
+            'zip_code' => $request->zip_code
         ]);
         $user->setToken();
         $user->setTokenExpireDate();

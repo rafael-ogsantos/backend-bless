@@ -29,3 +29,11 @@ Route::post('adduser','Api\ApiUserController@addUser');
 Route::post('getownregionagents','Api\ApiAgentController@getOwnRegionAgents');
 Route::post('searchagent','Api\ApiAgentController@searchAgent');
 Route::post('allagent','Api\ApiAgentController@allAgent');
+
+// Property Routes
+Route::post('properties','Api\ApiPropertyController@index');
+Route::post('properties-map-data','Api\ApiPropertyController@propertiesMapData');
+Route::post('add-property','Api\ApiPropertyController@addProperty');
+Route::post('add-property-image','Api\ApiPropertyController@addPropertyImage');
+Route::post('edit-property','Api\ApiPropertyController@editProperty');
+Route::post('edit-property-image','Api\ApiPropertyController@editPropertyImage');

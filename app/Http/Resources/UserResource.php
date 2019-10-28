@@ -44,7 +44,7 @@ class UserResource extends JsonResource
             'uf' => $this->user_details->uf,
             'franchise_user_cnpj' => $this->user_details->franchise_user_cnpj,
             'company_name' => $this->user_details->company_name,
-            'admin_user' => $this->user_details->admin_user,
+            'admin_user' => $this->user_details->admin_user
         ];
     }
 }

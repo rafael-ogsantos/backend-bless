@@ -80,15 +80,16 @@ class ApiPropertyController extends Controller
     public function editProperty(Request $request)
     {
         // dd($request->toArray());
-        $property = Property::where('id', $request->propertyId)->update([
-            'title' => $request->title,
-            'description' => $request->description,
-            'price' => $request->price,
-            'latitude' => $request->latitude,
-            'longitude' => $request->longitude,
-            'region' => $request->region,
-            'zip_code' => $request->zip_code,
-            'extra_field' => $request->extra_field
+        $property = Property::where('id', $request->propertyId)->first();
+        Property::where('id', $request->propertyId)->update([
+            'title' => $request->title ? $request->title : $property->title,
+            'description' => $request->description ? $request->description : $property->description,
+            'price' => $request->price ? $request->price : $property->price,
+            'latitude' => $request->latitude ? $request->latitude : $property->latitude,
+            'longitude' => $request->longitude ? $request->longitude : $property->longitude,
+            'region' => $request->region ? $request->region : $property->region,
+            'zip_code' => $request->zip_code ? $request->zip_code : $property->zip_code,
+            'extra_field' => $request->extra_field ? $request->extra_field : $property->extra_field
         ]);
         return response()->json([
             'data' => "Edited"

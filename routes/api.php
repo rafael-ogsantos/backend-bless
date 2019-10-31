@@ -37,3 +37,4 @@ Route::post('add-property','Api\ApiPropertyController@addProperty');
 Route::post('add-property-image','Api\ApiPropertyController@addPropertyImage');
 Route::post('edit-property','Api\ApiPropertyController@editProperty');
 Route::post('edit-property-image','Api\ApiPropertyController@editPropertyImage');
+Route::post('delete-property','Api\ApiPropertyController@deleteProperty');

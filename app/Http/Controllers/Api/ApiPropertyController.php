@@ -118,6 +118,17 @@ class ApiPropertyController extends Controller
         ]);
     }
 
+    public function deleteProperty(Request $request)
+    {
+        // dd($request->toArray());
+        $data = $request->toArray();
+        $propertyId = $data[0];
+        $property = Property::where('id', $propertyId)->delete();
+        return response()->json([
+            'data' => "Deleted"
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

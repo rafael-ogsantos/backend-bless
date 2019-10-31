@@ -14,7 +14,7 @@ $factory->define(Property::class, function (Faker $faker) {
     		return User::all()->random();
     	},
         'title' => $faker->name,
-        'description' => $faker->text,
+        'description' => "Property Description .....",
         'price' => $faker->randomNumber(3),
         'latitude' => function() {
             $arr = ['31.5204', '31.530', '31.5209', '31.5104'];

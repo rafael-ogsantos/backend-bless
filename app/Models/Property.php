@@ -34,7 +34,8 @@ class Property extends Model
 		'image', 
 		'region', 
 		'zip_code', 
-		'extra_field'
+		'extra_field',
+		'email_user'
 	];
 
 	public function getImage()

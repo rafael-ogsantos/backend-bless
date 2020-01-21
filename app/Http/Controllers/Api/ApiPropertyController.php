@@ -41,6 +41,7 @@ class ApiPropertyController extends Controller
 
     public function addProperty(Request $request)
     {
+
         // dd($request->toArray());
         $property = Property::create([
             'user_id' => $request->user_id,
@@ -48,6 +49,7 @@ class ApiPropertyController extends Controller
             'negociacao' => $request->negociacao,
             'tipo' => $request->tipo,
             'areap' => $request->areap,
+            'email_user' => $request->email,
             'areat' => $request->areat,
             'numero_quartos' => $request->numero_quartos,
             'iptu' => $request->iptu,
@@ -71,6 +73,8 @@ class ApiPropertyController extends Controller
             'zip_code' => $request->zip_code,
             'extra_field' => $request->extra_field
         ]);
+
+        dd($property);
         $property_id = $property->id;
         return response()->json([
             'data' => $property_id

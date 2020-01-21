@@ -25,13 +25,13 @@ class RoleController extends Controller
     	// dd($user->toArray());
     	$user->roles()->detach();
     	if ($request['admin']) {
-    		$user->roles()->attach(Role::where('name', 'Admin')->first());
+    		$user->roles()->attach(Role::where('name', 'Administrador')->first());
     	}
     	if ($request['franchise']) {
-    		$user->roles()->attach(Role::where('name', 'Franchise')->first());
+    		$user->roles()->attach(Role::where('name', 'Franqueado')->first());
     	}
     	if ($request['seller']) {
-    		$user->roles()->attach(Role::where('name', 'Client')->first());
+    		$user->roles()->attach(Role::where('name', 'Cliente')->first());
     	}
     	return redirect()->back()->with('roleassigned','Role Assigned Successfully to user!');
     }

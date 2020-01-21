@@ -34,7 +34,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -78,13 +78,13 @@ class RegisterController extends Controller
         ]);
 
         if ($data->user_role === 'admin') {
-            $user->roles()->attach(Role::where('name', 'Admin')->first());
+            $user->roles()->attach(Role::where('name', 'Administrador')->first());
         }
         elseif($data->user_role === 'franchise') {
-            $user->roles()->attach(Role::where('name', 'Franchise')->first());
+            $user->roles()->attach(Role::where('name', 'Franqueado')->first());
         }
         elseif($data->user_role === 'client') {
-            $user->roles()->attach(Role::where('name', 'Client')->first());
+            $user->roles()->attach(Role::where('name', 'Cliente')->first());
         }
         UserDetails::create([
             'user_id' => $user->id,
@@ -106,13 +106,13 @@ class RegisterController extends Controller
         ]);
 
         if ($request->user_role === 'admin') {
-            $user->roles()->attach(Role::where('name', 'Admin')->first());
+            $user->roles()->attach(Role::where('name', 'Administrador')->first());
         }
         elseif($request->user_role === 'franchise') {
-            $user->roles()->attach(Role::where('name', 'Franchise')->first());
+            $user->roles()->attach(Role::where('name', 'Franqueado')->first());
         }
         elseif($request->user_role === 'client') {
-            $user->roles()->attach(Role::where('name', 'Client')->first());
+            $user->roles()->attach(Role::where('name', 'Cliente')->first());
         }
         UserDetails::create([
             'user_id' => $user->id,

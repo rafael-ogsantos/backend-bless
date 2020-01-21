@@ -30,6 +30,15 @@ class ApiUserController extends Controller
     	
     }
 
+    public function storeUsers()
+    {
+        $user = User::where('id', $request->id)->with('users')->first();
+        // if ($user->api_token === $request->token) {
+            return response()->json([
+                'data' => new UserResource($user)
+            ]);
+    }
+
     public function localGetUserData()
     {
         $user = User::where('id', 1)->with('user_details')->with('roles')->first();

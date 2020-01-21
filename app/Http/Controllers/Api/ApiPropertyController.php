@@ -32,12 +32,37 @@ class ApiPropertyController extends Controller
         ]);
     }
 
+
+    public function propertiesAll()
+    {
+        $items = Property::all();
+        return $items;
+    }
+
     public function addProperty(Request $request)
     {
         // dd($request->toArray());
         $property = Property::create([
             'user_id' => $request->user_id,
             'title' => $request->title,
+            'negociacao' => $request->negociacao,
+            'tipo' => $request->tipo,
+            'areap' => $request->areap,
+            'areat' => $request->areat,
+            'numero_quartos' => $request->numero_quartos,
+            'iptu' => $request->iptu,
+            'garagem' => $request->garagem,
+            'banheiros' => $request->banheiros,
+            'situacao' =>$request->situacao,
+            'valor_cond' => $request->valor_cond,
+            'valor_tot' => $request->valor_tot,
+            'comissao' =>$request->comissao,
+            'cep' => $request->cep,
+            'endereco' => $request->endereco,
+            'bairro' => $request->bairro,
+            'numero' =>$request->numero,
+            'cidade' => $request->cidade,
+            'estado' => $request->estado,
             'description' => $request->description,
             'price' => $request->price,
             'latitude' => $request->latitude,
@@ -83,6 +108,24 @@ class ApiPropertyController extends Controller
         $property = Property::where('id', $request->propertyId)->first();
         Property::where('id', $request->propertyId)->update([
             'title' => $request->title ? $request->title : $property->title,
+            'negociacao' => $request->negociacao ? $request->negociacao : $property->negociacao,
+            'tipo' => $request->tipo ? $request->tipo : $property->tipo,
+            'areap' => $request->areap ? $request->areap : $property->areap,
+            'areat' => $request->areat ? $request->areat : $property->areat,
+            'numero_quartos' => $request->numero_quartos ? $request->numero_quartos : $property->numero_quartos,
+            'iptu' => $request->iptu ? $request->iptu : $property->iptu,
+            'garagem' => $request->garagem ? $request->garagem : $property->garagem,
+            'banheiros' => $request->banheiros ? $request->banheiros : $property->banheiros,
+            'situacao' =>$request->situacao ? $request->situacao : $property->situacao,
+            'valor_cond' => $request->valor_cond ? $request->valor_cond : $property->valor_cond,
+            'valor_tot' => $request->valor_tot ? $request->valor_tot : $property->valor_tot,
+            'comissao' =>$request->comissao ? $request->comissao : $property->comissao,
+            'cep' => $request->cep ? $request->cep : $property->cep,
+            'endereco' => $request->endereco ? $request->endereco : $property->endereco,
+            'bairro' => $request->bairro ? $request->bairro : $property->bairro,
+            'numero' =>$request->numero ? $request->numero : $property->numero,
+            'cidade' => $request->cidade ? $request->cidade : $property->cidade,
+            'estado' => $request->estado ? $request->estado : $property->estado,
             'description' => $request->description ? $request->description : $property->description,
             'price' => $request->price ? $request->price : $property->price,
             'latitude' => $request->latitude ? $request->latitude : $property->latitude,

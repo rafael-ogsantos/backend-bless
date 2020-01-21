@@ -22,6 +22,7 @@ Route::post('login','Auth\LoginController@loginApi');
 Route::post('register','Auth\RegisterController@registerApi');
 Route::post('logout','Auth\LoginController@logoutApi');
 Route::post('alluser','Api\ApiUserController@allUsers');
+Route::post('allusers','Api\ApiUserController@storeUsers');
 Route::post('userData','Api\ApiUserController@getUserData');
 Route::post('edituser','Api\ApiUserController@editUserData');
 Route::post('edituserimage','Api\ApiUserController@changeUserImage');
@@ -32,6 +33,7 @@ Route::post('allagent','Api\ApiAgentController@allAgent');
 
 // Property Routes
 Route::post('properties','Api\ApiPropertyController@index');
+Route::get('imoveis','Api\ApiPropertyController@propertiesAll');
 Route::post('properties-map-data','Api\ApiPropertyController@propertiesMapData');
 Route::post('add-property','Api\ApiPropertyController@addProperty');
 Route::post('add-property-image','Api\ApiPropertyController@addPropertyImage');

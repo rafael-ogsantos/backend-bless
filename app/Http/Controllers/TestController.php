@@ -5,11 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
+use App\Contact;
+use App\Models\Property;
 
 use Carbon\Carbon;
 
-class TestController extends Controller
-{
+class TestController extends Controller{
+    protected $property;
+    protected $contact;
+
+	function __construct (Contact $contact,Property $property){
+        $this->contact = $contact; 
+        $this->property = $property; 
+	}
+
     /**
      * Display a listing of the resource.
      *
@@ -100,7 +109,66 @@ class TestController extends Controller
 
     public function addMessage(Request $request)
     {
-        dd('aki');
-       
+        try{
+            //add ticket
+            $mail = new Contact();
+            $mail->sector = $request->setor;
+            $mail->subject = $request->assunto;
+            $mail->message = $request->mensagem;
+            $mail->email_dn = $request->email;
+            $mail->save();
+
+            return array('sucess' => true);
+        }catch(Exception $e){
+            return array('error' => $e);
+        }
+
+    }
+
+    public function getMessageSector(Request $request)
+    {
+        try{
+            //pegar todos os ticket pelo tipo de setor
+            $result = $this->contact
+            ->where('contacts.sector','=', $request->sector)
+            ->get();
+
+            return array('sucess' => true, 'contact' => $result) ;
+        }catch(Exception $e){
+            return array('error' => $e);
+        }
+
+    }
+
+    public function getMessageSectorPending(Request $request)
+    {
+        try{
+            //pegar ticket pendente pelo tipo de setor
+            $result = $this->contact
+            ->where('contacts.sector','=', $request->sector)
+            ->where('contacts.status','=', 'PENDING')
+            ->get();
+
+            return array('sucess' => true, 'contact' => $result) ;
+        }catch(Exception $e){
+            return array('error' => $e);
+        }
+
+    }
+
+    public function getPropertyType(Request $request)
+    {
+        try{
+
+            //filtro tipo compra/venda
+            $result = $this->property
+            ->where('properties.business_type','=', $request->type)
+            ->get();
+
+            return array('sucess' => true, 'propertys' => $result) ;
+        }catch(Exception $e){
+            return array('error' => $e);
+        }
+
     }
 }

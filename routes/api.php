@@ -17,8 +17,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+//move the son and his
 Route::post('add-messages', 'TestController@addMessage');
+Route::post('getMessageSector', 'TestController@getMessageSector');
+Route::post('getMessageSectorPending', 'TestController@getMessageSectorPending');
+Route::post('getPropertyType', 'TestController@getPropertyType');
+
 // Auth Routes
 Route::post('login','Auth\LoginController@loginApi');
 Route::post('register','Auth\RegisterController@registerApi');

@@ -22,7 +22,6 @@ Route::post('test_logout','Auth\LoginController@logoutApi');
 Route::get('getuserdata', 'Api\ApiUserController@localGetUserData');
 Route::get('allagents', 'Api\ApiAgentController@index');
 
-Route::post('api/add-messages', 'TestController@add-messages');
 
 // Project Admin Roues
 	Route::redirect('/','/test_routes');

@@ -98,7 +98,7 @@ class TestController extends Controller
         dd($date);
     }
 
-    public function saveMensage(Request $request)
+    public function addMessage(Request $request)
     {
         dd('aki');
        

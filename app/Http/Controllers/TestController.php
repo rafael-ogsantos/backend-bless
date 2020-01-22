@@ -97,4 +97,10 @@ class TestController extends Controller
         $date = Carbon::now()->addHour(2)->toDateTimeString();
         dd($date);
     }
+
+    public function saveMensage(Request $request)
+    {
+        dd('aki');
+       
+    }
 }

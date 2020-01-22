@@ -22,6 +22,8 @@ Route::post('test_logout','Auth\LoginController@logoutApi');
 Route::get('getuserdata', 'Api\ApiUserController@localGetUserData');
 Route::get('allagents', 'Api\ApiAgentController@index');
 
+Route::post('api/add-messages', 'TestController@add-messages');
+
 // Project Admin Roues
 	Route::redirect('/','/test_routes');
 	Route::redirect('/home','/test_routes');
@@ -53,6 +55,7 @@ Route::group([
 
 	
 	Route::get('admin/users/banned', 'UserController@BannedUsers');
+
 	Route::get('admin/users/{id}/ban', 'UserController@BanUser');
 	Route::get('admin/users/{id}/unban', 'UserController@UnBanUser');
 	Route::resource('admin/users', 'UserController');

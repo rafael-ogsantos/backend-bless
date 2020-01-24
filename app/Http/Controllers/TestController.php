@@ -13,10 +13,12 @@ use Carbon\Carbon;
 class TestController extends Controller{
     protected $property;
     protected $contact;
+    protected $user;
 
-	function __construct (Contact $contact,Property $property){
+	function __construct (Contact $contact,Property $property,User $user){
         $this->contact = $contact; 
         $this->property = $property; 
+        $this->user = $user; 
 	}
 
     /**
@@ -166,6 +168,23 @@ class TestController extends Controller{
             ->get();
 
             return array('sucess' => true, 'propertys' => $result) ;
+        }catch(Exception $e){
+            return array('error' => $e);
+        }
+
+    }
+
+    public function getMails(Request $request)
+    {
+        try{
+            $result = $this->user
+            ->select(
+                "users.email"
+            )
+            ->where('users.sector','=', $request->setor)
+            ->get();
+
+            return array('sucess' => true, 'mails' => $result) ;
         }catch(Exception $e){
             return array('error' => $e);
         }

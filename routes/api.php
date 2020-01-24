@@ -22,6 +22,7 @@ Route::post('add-messages', 'TestController@addMessage');
 Route::post('getMessageSector', 'TestController@getMessageSector');
 Route::post('getMessageSectorPending', 'TestController@getMessageSectorPending');
 Route::post('getPropertyType', 'TestController@getPropertyType');
+Route::post('get-mails', 'TestController@getMails');
 
 // Auth Routes
 Route::post('login','Auth\LoginController@loginApi');
